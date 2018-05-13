@@ -59,5 +59,5 @@ The client image runs a simple shell script that performs an http get on the url
 
 A pre-built version of the image, tagged as `rajchaudhuri/service-connectivity:alpine` is available on the docker hub.
 
-The docker compose file and the kubernetes manifest file both use this image, and configure the SERVICE_URL using the service name.
+The docker compose file and the kubernetes manifest file both use this image, and configure the SERVICE_URL environment variable using the name of the docker or kubernetes service.
 

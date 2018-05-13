@@ -17,7 +17,7 @@ spec:
         sample: service-connectivity
     spec:
       containers:
-        - name: webserver
+        - name: server
           image: nginx:alpine
 
 ---
@@ -54,7 +54,7 @@ spec:
         sample: service-connectivity
     spec:
       containers:
-        - name: tester
+        - name: client
           image: rajchaudhuri/service-connectivity-tester:alpine
           env:
             - name: SERVICE_URL

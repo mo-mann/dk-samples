@@ -12,6 +12,7 @@ We try to follow git flow. The master branch contains "final" code; active devel
 Contributions are welcome. Feel free to fork and send pull requests.
 
 ## List of samples
+
 |Sample Name|Description|
 |---|---|---|
 |[service-connectivity](service-connectivity.md)|This sample demostrates how an application (the client) can discover another application (the service) in the same docker host, docker swarm, or kubenetes cluster using service discovery.|
