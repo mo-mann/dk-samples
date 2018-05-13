@@ -1,0 +1,58 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: service-connectivity-webserver
+  labels:
+    app: service-connectivity-webserver
+    sample: service-connectivity
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-connectivity-webserver
+  template:
+    metadata:
+      labels:
+        app: service-connectivity-webserver
+        sample: service-connectivity
+    spec:
+      containers:
+        - name: webserver
+          image: nginx:alpine
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-connectivity-service
+spec:
+  selector:
+    app: service-connectivity-webserver
+    sample: service-connectivity
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: service-connectivity-tester
+  labels:
+    app: service-connectivity-tester
+    sample: service-connectivity
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-connectivity-tester
+  template:
+    metadata:
+      labels:
+        app: service-connectivity-tester
+    spec:
+      containers:
+        - name: tester
+          image: rajchaudhuri/service-connectivity-tester:1.0-alpine
+          env:
+            - name: SERVICE_URL
+              value: "http://service-connectivity-service"
