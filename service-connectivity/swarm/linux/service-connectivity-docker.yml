@@ -1,0 +1,10 @@
+version: '3.0'
+
+services: 
+  sample-server:
+    image: nginx:alpine
+
+  sample-client:
+    image: rajchaudhuri/service-connectivity-tester:alpine
+    environment: 
+      SERVICE_URL: http://sample-server
