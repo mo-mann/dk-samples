@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Docker and Kubernetes Samples
+title: Service-Connectivity Samples
 ---
 
 This sample demostrates how an application (the _client_) can discover another application (the _server_) in the same docker host, docker swarm, or kubenetes cluster using _service discovery_.
