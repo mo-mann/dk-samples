@@ -1,4 +1,4 @@
-FROM golang:1.8.3-alpine AS builder
+FROM golang:1.10.2-alpine3.7 AS builder
 COPY src /go/src/github.com/rajch/dk-samples/inside-container
 WORKDIR /go/src/github.com/rajch/dk-samples/inside-container
 ENV CGO_ENABLED="0" GOARCH="amd64" GOOS="linux"
