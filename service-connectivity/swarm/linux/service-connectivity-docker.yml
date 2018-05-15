@@ -2,9 +2,11 @@ version: '3.0'
 
 services: 
   sample-server:
-    image: nginx:alpine
+    image: rajchaudhuri/inside-container-sample:1.0-linux
+    environment:
+      PORT_NUMBER: 80
 
   sample-client:
-    image: rajchaudhuri/service-connectivity-tester:alpine
+    image: rajchaudhuri/service-connectivity-tester:1.0-alpine
     environment: 
       SERVICE_URL: http://sample-server

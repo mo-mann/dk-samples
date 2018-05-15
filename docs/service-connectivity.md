@@ -5,7 +5,7 @@ title: Service-Connectivity Samples
 
 This sample demostrates how an application (the _client_) can discover another application (the _server_) in the same docker host, docker swarm, or kubenetes cluster using _service discovery_.
 
-In this sample, the **server** is a web server, built from the stock `nginx` image from the Docker Hub. The **client** is a shell script, built from a custom image whose Dockerfile is provided as part of the sample.
+In this sample, the **server** is a web server, built from the [inside-container](inside-container.md) sample. The **client** is a shell script, built from a custom image whose Dockerfile is provided as part of the sample.
 
 ## Standalone Docker
 
@@ -21,7 +21,7 @@ You can then check that the **client** can **connect** to the server by using th
 
 ## Docker Swarm Mode
 
-In docker swarm mode, the **client** and the **server** are each deployed as _swarm services_. Each can be scaled to run multiple containers. 
+In docker swarm mode, the **client** and the **server** are each deployed as _swarm services_. Each can be scaled to run multiple containers.
 
 All containers that are part of the **client** swarm service should discover containers in the **server** swarm service using the name of the swarm service. Docker ensures that the name resolves to any container that belongs to the **server** swarm service, and even performs load balancing.
 
@@ -57,7 +57,7 @@ You can then check that _any_ **client** can **connect** to _any_ server by usin
 
 The client image runs a simple shell script that performs an http get on the url contained in an environment variable called SERVICE_URL, and logs the result.
 
-A pre-built version of the image, tagged as `rajchaudhuri/service-connectivity:alpine` is available on the docker hub.
+A pre-built version of the image, tagged as `rajchaudhuri/service-connectivity:1.0-alpine` is available on the docker hub.
 
 The docker compose file and the kubernetes manifest file both use this image, and configure the SERVICE_URL environment variable using the name of the docker or kubernetes service.
 
