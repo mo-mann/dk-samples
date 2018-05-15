@@ -4,6 +4,6 @@ do
     echo "*********************************************"
     echo "[`date`]: Checking the URL $SERVICE_URL"
     2>/dev/stderr wget -O /dev/stdout $SERVICE_URL
-    echo "[`date`]: Waiting $SERVICE_DELAY"
-    sleep $SERVICE_DELAY
+    echo "[`date`]: Waiting 5 seconds"
+    sleep 5s
 done
