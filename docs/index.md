@@ -13,17 +13,49 @@ Contributions are welcome. Feel free to fork and send pull requests.
 
 ## How to use the samples
 
-If a sample contains images, the sources will be in a directory called `images` under the sample directory. Each subdirectory under images represents an individual image, which should be tagged as _sample-name_-_image-name_. Under each image directory, there will be linux and windows subdirectories, which will contain Dockerfiles.
+Every sample will have accompanying documentation which explains how to use that sample. However, all samples will follow some common rules.
+
+Every sample will contain at least one of the following:
+
+* Images (Build context directories with Dockerfiles)
+* Docker Compose files (for standalone and/or stack deployment)
+* Kubernetes manifest files (yaml files)
+
+### Images
+
+If a sample contains images, the sources will be in a directory called `images` under the sample directory. Each subdirectory under images represents an individual image, which should be tagged as _sample-name_-_image-name_. Under each image directory, there will be linux and windows subdirectories, which will contain Dockerfiles. For windows, there may be multiple subdirectories for different Windows versions.
 
 To build an image, the image directory must be used as the build context directory. This means that you build Linux and Windows images separately, as follows:
 
-**Linux** : **_image-directory_$** docker build -t _sample-name_-_image-name_:linux -f linux/Dockerfile .
+#### Linux
 
-**Windows** : **C:\_image-directory_>** docker build -t _sample-name_-_image-name_:windows -f windows/Dockerfile .
+```bash
+docker build -t <sample-name>-<image-name>:linux -f linux/Dockerfile .
+```
 
-Pre-built images can be found on the docker hub, under the account **rajchaudhuri**.
+#### Windows
 
-Any docker compose and kubernetes manifest files reference the pre-built images. If you modify and re-build the images, remember to publish to your own container registry, and change the references.
+```cmd
+docker build -t <sample-name>-<image-name>:windows -f windows/Dockerfile .
+```
+
+Pre-built images for all samples can be found on the docker hub, under the account **rajchaudhuri**.
+
+### Docker Compose files
+
+If a sample includes docker compose files, these will be in a directory called `docker` under the sample directory. There may be separate compose files for linux and windows, in which case they will be in `linux` and `windows` subdirectories. If a compose file is found directly under the `docker` directory, it is safe to use unmodified in linux and windows.
+
+The compose files will always be named for the sample, and never be called ```docker-compose.yml```. This means that the `docker-compose` command will always need to be used with the `-f` option.
+
+All compose files will be suitable for both standalone docker deployment with `docker-compose`, or for swarm deployment with `docker stack create -c`. In case a sample supports only standalone or only swarm, this will be called out in the sample's documentation.
+
+### Kubernetes manifest files
+
+If a sample includes kubernetes manifest files, these will be in a directory called `kubernetes` under the sample directory. There may be separate manifest files for linux and windows, in which case they will be in `linux` and `windows` subdirectories. If manifest files are found directly under the `kubernetes` directory, it is safe to use them unmodified in linux and windows.
+
+### Modifying and building sample images
+
+All docker compose and kubernetes manifest files in all samples initially reference the pre-built images. If you modify and re-build the images, remember to publish to your own container registry, and change the references.
 
 ## List of samples
 
